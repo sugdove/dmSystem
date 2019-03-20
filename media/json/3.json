@@ -1,0 +1,1019 @@
+{
+  "options": [
+    {
+      "name": "cluster.lookup-unhashed",
+      "description": "This option if set to ON, does a lookup through all the sub-volumes, in case a lookup didn't return any result from the hash subvolume. If set to OFF, it does not do a lookup on the remaining subvolumes.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.lookup-optimize",
+      "description": "This option if set to ON enables the optimization of -ve lookups, by not doing a lookup on non-hashed subvolumes for files, in case the hashed subvolume does not return any result. This option disregards the lookup-unhashed setting, when enabled.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "cluster.min-free-disk",
+      "description": "Percentage/Size of disk space, after which the process starts balancing out the cluster, and logs will appear in log files",
+      "defaultValue": "10%"
+    },
+    {
+      "name": "cluster.min-free-inodes",
+      "description": "after system has only N% of inodes, warnings starts to appear in log files",
+      "defaultValue": "5%"
+    },
+    {
+      "name": "cluster.rebalance-stats",
+      "description": "This option if set to ON displays and logs the  time taken for migration of each file, during the rebalance process. If set to OFF, the rebalance logs will only display the time spent in each directory.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "cluster.subvols-per-directory",
+      "description": "Specifies the directory layout spread. Takes number of subvolumes as default value.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "cluster.readdir-optimize",
+      "description": "This option if set to ON enables the optimization that allows DHT to requests non-first subvolumes to filter out directory entries.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "cluster.rebal-throttle",
+      "description": " Sets the maximum number of parallel file migrations allowed on a node during the rebalance operation. The default value is normal and allows a max of [($(processing units) - 4) / 2), 2]  files to be migrated at a time. Lazy will allow only one file to be migrated at a time and aggressive will allow max of [($(processing units) - 4) / 2), 4]",
+      "defaultValue": "normal"
+    },
+    {
+      "name": "cluster.weighted-rebalance",
+      "description": "When enabled, files will be allocated to bricks with a probability proportional to their size.  Otherwise, all bricks will have the same probability (legacy behavior).",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.entry-change-log",
+      "description": "Entry fops like create/unlink will not perform pre/post fop changelog operations in afr transaction if this option is disabled",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.read-subvolume",
+      "description": "inode-read fops happen only on one of the bricks in replicate. Afr will prefer the one specified using this option if it is not stale. Option value must be one of the xlator names of the children. Ex: <volname>-client-0 till <volname>-client-<number-of-bricks - 1>",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "cluster.read-subvolume-index",
+      "description": "inode-read fops happen only on one of the bricks in replicate. AFR will prefer the one specified using this option if it is not stale. allowed options include -1 till replica-count - 1",
+      "defaultValue": "-1"
+    },
+    {
+      "name": "cluster.read-hash-mode",
+      "description": "inode-read fops happen only on one of the bricks in replicate. AFR will prefer the one computed using the method specified using this option0 = first up server, 1 = hash by GFID of file (all clients use same subvolume), 2 = hash by GFID of file and client PID",
+      "defaultValue": "1"
+    },
+    {
+      "name": "cluster.background-self-heal-count",
+      "description": "This specifies the number of per client self-heal jobs that can perform parallel heals in the background.",
+      "defaultValue": "8"
+    },
+    {
+      "name": "cluster.metadata-self-heal",
+      "description": "Using this option we can enable/disable metadata i.e. Permissions, ownerships, xattrs self-heal on the file/directory.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.data-self-heal",
+      "description": "Using this option we can enable/disable data self-heal on the file. \"open\" means data self-heal action will only be triggered by file open operations.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.entry-self-heal",
+      "description": "Using this option we can enable/disable entry self-heal on the directory.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.self-heal-daemon",
+      "description": "This option applies to only self-heal-daemon. Index directory crawl and automatic healing of files will not be performed if this option is turned off.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.heal-timeout",
+      "description": "time interval for checking the need to self-heal in self-heal-daemon",
+      "defaultValue": "600"
+    },
+    {
+      "name": "cluster.self-heal-window-size",
+      "description": "Maximum number blocks per file for which self-heal process would be applied simultaneously.",
+      "defaultValue": "1"
+    },
+    {
+      "name": "cluster.data-change-log",
+      "description": "Data fops like write/truncate will not perform pre/post fop changelog operations in afr transaction if this option is disabled",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.metadata-change-log",
+      "description": "Metadata fops like setattr/setxattr will not perform pre/post fop changelog operations in afr transaction if this option is disabled",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.data-self-heal-algorithm",
+      "description": "Select between \"full\", \"diff\". The \"full\" algorithm copies the entire file from source to sink. The \"diff\" algorithm copies to sink only those blocks whose checksums don't match with those of source. If no option is configured the option is chosen dynamically as follows: If the file does not exist on one of the sinks or empty file exists or if the source file size is about the same as page size the entire file will be read and written i.e \"full\" algo, otherwise \"diff\" algo is chosen.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "cluster.eager-lock",
+      "description": "Lock phase of a transaction has two sub-phases. First is an attempt to acquire locks in parallel by broadcasting non-blocking lock requests. If lock acquisition fails on any server, then the held locks are unlocked and revert to a blocking locked mode sequentially on one server after another.  If this option is enabled the initial broadcasting lock request attempt to acquire lock on the entire file. If this fails, we revert back to the sequential \"regional\" blocking lock as before. In the case where such an \"eager\" lock is granted in the non-blocking phase, it gives rise to an opportunity for optimization. i.e, if the next write transaction on the same FD arrives before the unlock phase of the first transaction, it \"takes over\" the full file lock. Similarly if yet another data transaction arrives before the unlock phase of the \"optimized\" transaction, that in turn \"takes over\" the lock as well. The actual unlock now happens at the end of the last \"optimized\" transaction.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "disperse.eager-lock",
+      "description": "This option will enable/diable eager lock fordisperse volume ",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.quorum-type",
+      "description": "If value is \"fixed\" only allow writes if quorum-count bricks are present.  If value is \"auto\" only allow writes if more than half of bricks, or exactly half including the first, are present.",
+      "defaultValue": "none"
+    },
+    {
+      "name": "cluster.quorum-count",
+      "description": "If quorum-type is \"fixed\" only allow writes if this many bricks or present.  Other quorum types will OVERWRITE this value.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "cluster.choose-local",
+      "description": "Choose a local subvolume (i.e. Brick) to read from if read-subvolume is not explicitly set.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "cluster.self-heal-readdir-size",
+      "description": "readdirp size for performing entry self-heal",
+      "defaultValue": "1KB"
+    },
+    {
+      "name": "cluster.ensure-durability",
+      "description": "Afr performs fsyncs for transactions if this option is on to make sure the changelogs/data is written to the disk",
+      "defaultValue": "on"
+    },
+    {
+      "name": "cluster.consistent-metadata",
+      "description": "If this option is enabled, readdirp will force lookups on those entries read whose read child is not the same as that of the parent. This will guarantee that all read operations on a file serve attributes from the same subvol as long as it holds  a good copy of the file/dir.",
+      "defaultValue": "no"
+    },
+    {
+      "name": "cluster.heal-wait-queue-length",
+      "description": "This specifies the number of heals that can be queued for the parallel background self heal jobs.",
+      "defaultValue": "128"
+    },
+    {
+      "name": "cluster.stripe-block-size",
+      "description": "Size of the stripe unit that would be read from or written to the striped servers.",
+      "defaultValue": "128KB"
+    },
+    {
+      "name": "cluster.stripe-coalesce",
+      "description": "Enable/Disable coalesce mode to flatten striped files as stored on the server (i.e., eliminate holes caused by the traditional format).",
+      "defaultValue": "true"
+    },
+    {
+      "name": "diagnostics.latency-measurement",
+      "description": "If on stats related to the latency of each operation would be tracked inside GlusterFS data-structures. ",
+      "defaultValue": "off"
+    },
+    {
+      "name": "diagnostics.dump-fd-stats",
+      "description": "If on stats related to file-operations would be tracked inside GlusterFS data-structures.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "diagnostics.brick-log-level",
+      "description": "Changes the log-level of the bricks",
+      "defaultValue": "INFO"
+    },
+    {
+      "name": "diagnostics.client-log-level",
+      "description": "Changes the log-level of the clients",
+      "defaultValue": "INFO"
+    },
+    {
+      "name": "diagnostics.brick-sys-log-level",
+      "description": "Gluster's syslog log-level",
+      "defaultValue": "CRITICAL"
+    },
+    {
+      "name": "diagnostics.client-sys-log-level",
+      "description": "Gluster's syslog log-level",
+      "defaultValue": "CRITICAL"
+    },
+    {
+      "name": "diagnostics.brick-logger",
+      "description": "(null)",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "diagnostics.client-logger",
+      "description": "(null)",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "diagnostics.brick-log-format",
+      "description": "(null)",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "diagnostics.client-log-format",
+      "description": "(null)",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "diagnostics.brick-log-buf-size",
+      "description": "(null)",
+      "defaultValue": "5"
+    },
+    {
+      "name": "diagnostics.client-log-buf-size",
+      "description": "(null)",
+      "defaultValue": "5"
+    },
+    {
+      "name": "diagnostics.brick-log-flush-timeout",
+      "description": "(null)",
+      "defaultValue": "120"
+    },
+    {
+      "name": "diagnostics.client-log-flush-timeout",
+      "description": "(null)",
+      "defaultValue": "120"
+    },
+    {
+      "name": "performance.cache-max-file-size",
+      "description": "Maximum file size which would be cached by the io-cache translator.",
+      "defaultValue": "0"
+    },
+    {
+      "name": "performance.cache-min-file-size",
+      "description": "Minimum file size which would be cached by the io-cache translator.",
+      "defaultValue": "0"
+    },
+    {
+      "name": "performance.cache-refresh-timeout",
+      "description": "The cached data for a file will be retained till 'cache-refresh-timeout' seconds, after which data re-validation is performed.",
+      "defaultValue": "1"
+    },
+    {
+      "name": "performance.cache-priority",
+      "description": "Assigns priority to filenames with specific patterns so that when a page needs to be ejected out of the cache, the page of a file whose priority is the lowest will be ejected earlier",
+      "defaultValue": ""
+    },
+    {
+      "name": "performance.cache-size",
+      "description": "Size of the read cache.",
+      "defaultValue": "32MB"
+    },
+    {
+      "name": "performance.io-thread-count",
+      "description": "Number of threads in IO threads translator which perform concurrent IO operations",
+      "defaultValue": "16"
+    },
+    {
+      "name": "performance.high-prio-threads",
+      "description": "Max number of threads in IO threads translator which perform high priority IO operations at a given time",
+      "defaultValue": "16"
+    },
+    {
+      "name": "performance.normal-prio-threads",
+      "description": "Max number of threads in IO threads translator which perform normal priority IO operations at a given time",
+      "defaultValue": "16"
+    },
+    {
+      "name": "performance.low-prio-threads",
+      "description": "Max number of threads in IO threads translator which perform low priority IO operations at a given time",
+      "defaultValue": "16"
+    },
+    {
+      "name": "performance.least-prio-threads",
+      "description": "Max number of threads in IO threads translator which perform least priority IO operations at a given time",
+      "defaultValue": "1"
+    },
+    {
+      "name": "performance.enable-least-priority",
+      "description": "Enable/Disable least priority",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.least-rate-limit",
+      "description": "Max number of least priority operations to handle per-second",
+      "defaultValue": "0"
+    },
+    {
+      "name": "performance.flush-behind",
+      "description": "If this option is set ON, instructs write-behind translator to perform flush in background, by returning success (or any errors, if any of previous  writes were failed) to application even before flush FOP is sent to backend filesystem. ",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.nfs.flush-behind",
+      "description": "If this option is set ON, instructs write-behind translator to perform flush in background, by returning success (or any errors, if any of previous  writes were failed) to application even before flush FOP is sent to backend filesystem. ",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.write-behind-window-size",
+      "description": "Size of the write-behind buffer for a single file (inode).",
+      "defaultValue": "1MB"
+    },
+    {
+      "name": "performance.resync-failed-syncs-after-fsync",
+      "description": "If sync of \"cached-writes issued before fsync\" (to backend) fails, this option configures whether to retry syncing them after fsync or forget them. If set to on, cached-writes are retried till a \"flush\" fop (or a successful sync) on sync failures. fsync itself is failed irrespective of the value of this option. ",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "performance.nfs.write-behind-window-size",
+      "description": "Size of the write-behind buffer for a single file (inode).",
+      "defaultValue": "1MB"
+    },
+    {
+      "name": "performance.strict-o-direct",
+      "description": "This option when set to off, ignores the O_DIRECT flag.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "performance.nfs.strict-o-direct",
+      "description": "This option when set to off, ignores the O_DIRECT flag.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "performance.strict-write-ordering",
+      "description": "Do not let later writes overtake earlier writes even if they do not overlap",
+      "defaultValue": "off"
+    },
+    {
+      "name": "performance.nfs.strict-write-ordering",
+      "description": "Do not let later writes overtake earlier writes even if they do not overlap",
+      "defaultValue": "off"
+    },
+    {
+      "name": "performance.lazy-open",
+      "description": "Perform open in the backend only when a necessary FOP arrives (e.g writev on the FD, unlink of the file). When option is disabled, perform backend open right after unwinding open().",
+      "defaultValue": "yes"
+    },
+    {
+      "name": "performance.read-after-open",
+      "description": "read is sent only after actual open happens and real fd is obtained, instead of doing on anonymous fd (similar to write)",
+      "defaultValue": "no"
+    },
+    {
+      "name": "performance.read-ahead-page-count",
+      "description": "Number of pages that will be pre-fetched",
+      "defaultValue": "4"
+    },
+    {
+      "name": "performance.md-cache-timeout",
+      "description": "Time period after which cache has to be refreshed",
+      "defaultValue": "1"
+    },
+    {
+      "name": "performance.cache-swift-metadata",
+      "description": "Cache swift metadata (user.swift.metadata xattr)",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "features.encryption",
+      "description": "enable/disable client-side encryption for the volume.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "encryption.master-key",
+      "description": "Pathname of regular file which contains master volume key",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "encryption.data-key-size",
+      "description": "Data key size (bits)",
+      "defaultValue": "256"
+    },
+    {
+      "name": "encryption.block-size",
+      "description": "Atom size (bits)",
+      "defaultValue": "4096"
+    },
+    {
+      "name": "network.frame-timeout",
+      "description": "Time frame after which the (file) operation would be declared as dead, if the server does not respond for a particular (file) operation.",
+      "defaultValue": "1800"
+    },
+    {
+      "name": "network.ping-timeout",
+      "description": "Time duration for which the client waits to check if the server is responsive.",
+      "defaultValue": "42"
+    },
+    {
+      "name": "network.tcp-window-size",
+      "description": "Specifies the window size for tcp socket.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "features.lock-heal",
+      "description": "When the connection to client is lost, server cleans up all the locks held by the client. After the connection is restored, the client reacquires (heals) the fcntl locks released by the server.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.grace-timeout",
+      "description": "Specifies the duration for the lock state to be maintained on the client after a network disconnection. Range 10-1800 seconds.",
+      "defaultValue": "10"
+    },
+    {
+      "name": "network.remote-dio",
+      "description": "If enabled, in open() and creat() calls, O_DIRECT flag will be filtered at the client protocol level so server will still continue to cache the file. This works similar to NFS's behavior of O_DIRECT",
+      "defaultValue": "disable"
+    },
+    {
+      "name": "client.event-threads",
+      "description": "Specifies the number of event threads to execute in parallel. Larger values would help process responses faster, depending on available processing power. Range 1-32 threads.",
+      "defaultValue": "2"
+    },
+    {
+      "name": "network.ping-timeout",
+      "description": "(null)",
+      "defaultValue": "42"
+    },
+    {
+      "name": "network.inode-lru-limit",
+      "description": "Specifies the maximum megabytes of memory to be used in the inode cache.",
+      "defaultValue": "16384"
+    },
+    {
+      "name": "auth.allow",
+      "description": "Allow a comma separated list of addresses and/or hostnames to connect to the server. Option auth.reject overrides this option. By default, all connections are allowed.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "auth.reject",
+      "description": "Reject a comma separated list of addresses and/or hostnames to connect to the server. This option overrides the auth.allow option. By default, all connections are allowed.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "server.root-squash",
+      "description": "Map requests from uid/gid 0 to the anonymous uid/gid. Note that this does not apply to any other uids or gids that might be equally sensitive, such as user bin or group staff.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "server.anonuid",
+      "description": "value of the uid used for the anonymous user/nfsnobody when root-squash is enabled.",
+      "defaultValue": "65534"
+    },
+    {
+      "name": "server.anongid",
+      "description": "value of the gid used for the anonymous user/nfsnobody when root-squash is enabled.",
+      "defaultValue": "65534"
+    },
+    {
+      "name": "server.statedump-path",
+      "description": "Specifies directory in which gluster should save its statedumps.",
+      "defaultValue": "/var/run/gluster"
+    },
+    {
+      "name": "server.outstanding-rpc-limit",
+      "description": "Parameter to throttle the number of incoming RPC requests from a client. 0 means no limit (can potentially run out of memory)",
+      "defaultValue": "64"
+    },
+    {
+      "name": "server.manage-gids",
+      "description": "Resolve groups on the server-side.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "server.dynamic-auth",
+      "description": "When 'on' perform dynamic authentication of volume options in order to allow/terminate client transport connection immediately in response to *.allow | *.reject volume set options.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "server.gid-timeout",
+      "description": "Timeout in seconds for the cached groups to expire.",
+      "defaultValue": "300"
+    },
+    {
+      "name": "server.event-threads",
+      "description": "Specifies the number of event threads to execute in parallel. Larger values would help process responses faster, depending on available processing power. Range 1-32 threads.",
+      "defaultValue": "2"
+    },
+    {
+      "name": "ssl.own-cert",
+      "description": "SSL certificate. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.private-key",
+      "description": "SSL private key. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.ca-list",
+      "description": "SSL CA list. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.crl-path",
+      "description": "Path to directory containing CRL. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.certificate-depth",
+      "description": "Maximum certificate-chain depth.  If zero, the peer's certificate itself must be in the local certificate list.  Otherwise, there may be up to N signing certificates between the peer's and the local list.  Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.cipher-list",
+      "description": "Allowed SSL ciphers. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.dh-param",
+      "description": "DH parameters file. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "ssl.ec-curve",
+      "description": "ECDH curve name. Ignored if SSL is not enabled.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "performance.write-behind",
+      "description": "enable/disable write-behind translator in the volume.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.read-ahead",
+      "description": "enable/disable read-ahead translator in the volume.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.readdir-ahead",
+      "description": "enable/disable readdir-ahead translator in the volume.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "performance.io-cache",
+      "description": "enable/disable io-cache translator in the volume.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.quick-read",
+      "description": "enable/disable quick-read translator in the volume.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.open-behind",
+      "description": "enable/disable open-behind translator in the volume.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.stat-prefetch",
+      "description": "enable/disable meta-data caching translator in the volume.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.client-io-threads",
+      "description": "enable/disable io-threads translator in the client graph of volume.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "performance.nfs.write-behind",
+      "description": "enable/disable write-behind translator in the volume",
+      "defaultValue": "on"
+    },
+    {
+      "name": "performance.force-readdirp",
+      "description": "Convert all readdir requests to readdirplus to collect stat info on each entry.",
+      "defaultValue": "true"
+    },
+    {
+      "name": "features.file-snapshot",
+      "description": "enable/disable file-snapshot feature in the volume.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.uss",
+      "description": "enable/disable User Serviceable Snapshots on the volume.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.snapshot-directory",
+      "description": "Entry point directory for entering snapshot world. Value can have only [0-9a-z-_] and starts with dot (.) and cannot exceed 255 character",
+      "defaultValue": ".snaps"
+    },
+    {
+      "name": "features.show-snapshot-directory",
+      "description": "show entry point in readdir output of snapdir-entry-path which is set by samba",
+      "defaultValue": "off"
+    },
+    {
+      "name": "network.compression",
+      "description": "enable/disable network compression translator",
+      "defaultValue": "off"
+    },
+    {
+      "name": "network.compression.window-size",
+      "description": "Size of the zlib history buffer.",
+      "defaultValue": "-15"
+    },
+    {
+      "name": "network.compression.mem-level",
+      "description": "Memory allocated for internal compression state. 1 uses minimum memory but is slow and reduces compression ratio; memLevel=9 uses maximum memory for optimal speed. The default value is 8.",
+      "defaultValue": "8"
+    },
+    {
+      "name": "network.compression.min-size",
+      "description": "Data is compressed only when its size exceeds this.",
+      "defaultValue": "0"
+    },
+    {
+      "name": "network.compression.compression-level",
+      "description": "Compression levels \n0 : no compression, 1 : best speed, \n9 : best compression, -1 : default compression ",
+      "defaultValue": "-1"
+    },
+    {
+      "name": "features.quota-deem-statfs",
+      "description": "If set to on, it takes quota limits intoconsideration while estimating fs size. (df command) (Default is off).",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.enable-ino32",
+      "description": "For nfs clients or apps that do not support 64-bit inode numbers, use this option to make NFS return 32-bit inode numbers instead. Disabled by default, so NFS returns 64-bit inode numbers.",
+      "defaultValue": "no"
+    },
+    {
+      "name": "nfs.mem-factor",
+      "description": "Use this option to make NFS be faster on systems by using more memory. This option specifies a multiple that determines the total amount of memory used. Default value is 15. Increase to use more memory in order to improve performance for certain use cases.Please consult gluster-users list before using this option.",
+      "defaultValue": "15"
+    },
+    {
+      "name": "nfs.export-dirs",
+      "description": "By default, all subvolumes of nfs are exported as individual exports. There are cases where a subdirectory or subdirectories in the volume need to be exported separately. Enabling this option allows any directory on a volumes to be exported separately.Directory exports are enabled by default.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.export-volumes",
+      "description": "Enable or disable exporting whole volumes, instead if used in conjunction with nfs3.export-dir, can allow setting up only subdirectories as exports. On by default.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.addr-namelookup",
+      "description": "Users have the option of turning on name lookup for incoming client connections using this option. Use this option to turn on name lookups during address-based authentication. Turning this on will enable you to use hostnames in nfs.rpc-auth-* filters. In some setups, the name server can take too long to reply to DNS queries resulting in timeouts of mount requests. By default, name lookup is off",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.dynamic-volumes",
+      "description": "Internal option set to tell gnfs to use a different scheme for encoding file handles when DVM is being used.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.register-with-portmap",
+      "description": "For systems that need to run multiple nfs servers, only one registration is possible with portmap service. Use this option to turn off portmap registration for Gluster NFS. On by default",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.outstanding-rpc-limit",
+      "description": "Parameter to throttle the number of incoming RPC requests from a client. 0 means no limit (can potentially run out of memory)",
+      "defaultValue": "16"
+    },
+    {
+      "name": "nfs.port",
+      "description": "Use this option on systems that need Gluster NFS to be associated with a non-default port number.",
+      "defaultValue": "2049"
+    },
+    {
+      "name": "nfs.rpc-auth-unix",
+      "description": "Disable or enable the AUTH_UNIX authentication type for a particular exported volume overriding defaults and general setting for AUTH_UNIX scheme. Must always be enabled for better interoperability. However, can be disabled if needed. Enabled by default.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.rpc-auth-null",
+      "description": "Disable or enable the AUTH_NULL authentication type for a particular exported volume overriding defaults and general setting for AUTH_NULL. Must always be enabled. This option is here only to avoid unrecognized option warnings.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.rpc-auth-allow",
+      "description": "Allow a comma separated list of addresses and/or hostnames to connect to the server. By default, all connections are allowed. This allows users to define a rule for a specific exported volume.",
+      "defaultValue": "all"
+    },
+    {
+      "name": "nfs.rpc-auth-reject",
+      "description": "Reject a comma separated list of addresses and/or hostnames from connecting to the server. By default, all connections are allowed. This allows users to define a rule for a specific exported volume.",
+      "defaultValue": "none"
+    },
+    {
+      "name": "nfs.ports-insecure",
+      "description": "Allow client connections from unprivileged ports. By default only privileged ports are allowed. Use this option to enable or disable insecure ports for a specific subvolume and to override the global setting set by the previous option.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.transport-type",
+      "description": "Specifies the nfs transport type. Valid transport types are 'tcp' and 'rdma'.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "nfs.trusted-sync",
+      "description": "All writes and COMMIT requests are treated as async. This implies that no write requests are guaranteed to be on server disks when the write reply is received at the NFS client. Trusted sync includes  trusted-write behaviour. Off by default.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.trusted-write",
+      "description": "On an UNSTABLE write from client, return STABLE flag to force client to not send a COMMIT request. In some environments, combined with a replicated GlusterFS setup, this option can improve write performance. This flag allows user to trust Gluster replication logic to sync data to the disks and recover when required. COMMIT requests if received will be handled in a default manner by fsyncing. STABLE writes are still handled in a sync manner. Off by default.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.volume-access",
+      "description": "Type of access desired for this subvolume:  read-only, read-write(default)",
+      "defaultValue": "read-write"
+    },
+    {
+      "name": "nfs.export-dir",
+      "description": "By default, all subvolumes of nfs are exported as individual exports. There are cases where a subdirectory or subdirectories in the volume need to be exported separately. This option can also be used in conjunction with nfs3.export-volumes option to restrict exports only to the subdirectories specified through this option. Must be an absolute path. Along with path allowed list of IPs/hostname can be associated with each subdirectory. If provided connection will allowed only from these IPs. By default connections from all IPs are allowed. Format: <dir>[(hostspec[|hostspec|...])][,...]. Where hostspec can be an IP address, hostname or an IP range in CIDR notation. e.g. /foo(192.168.1.0/24|host1|10.1.1.8),/host2. NOTE: Care must be taken while configuring this option as invalid entries and/or unreachable DNS servers can introduce unwanted delay in all the mount calls.",
+      "defaultValue": ""
+    },
+    {
+      "name": "nfs.disable",
+      "description": "This option is used to start or stop the NFS server for individual volumes.",
+      "defaultValue": "false"
+    },
+    {
+      "name": "nfs.nlm",
+      "description": "This option, if set to 'off', disables NLM server by not registering the service with the portmapper. Set it to 'on' to re-enable it. Default value: 'on'",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.acl",
+      "description": "This option is used to control ACL support for NFS.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "nfs.mount-udp",
+      "description": "set the option to 'on' to enable mountd on UDP. Required for some Solaris and AIX NFS clients. The need for enabling this option often depends on the usage of NLM.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.mount-rmtab",
+      "description": "Set the location of the cache file that is used to list all the NFS-clients that have connected through the MOUNT protocol. If this is on shared storage, all GlusterFS servers will update and output (with 'showmount') the same list. Set to \"/-\" to disable.",
+      "defaultValue": "/var/lib/glusterd/nfs/rmtab"
+    },
+    {
+      "name": "nfs.drc",
+      "description": "Enable Duplicate Request Cache in gNFS server to improve correctness of non-idempotent operations like write, delete, link, et al",
+      "defaultValue": "off"
+    },
+    {
+      "name": "nfs.drc-size",
+      "description": "Sets the number of non-idempotent requests to cache in drc",
+      "defaultValue": "0x20000"
+    },
+    {
+      "name": "nfs.read-size",
+      "description": "Size in which the client should issue read requests to the Gluster NFSv3 server. Must be a multiple of 4KB (4096). Min and Max supported values are 4KB (4096) and 1MB (1048576) respectively. If the specified value is within the supported range but not a multiple of 4096, it is rounded up to the nearest multiple of 4096.",
+      "defaultValue": "(1 * 1048576ULL)"
+    },
+    {
+      "name": "nfs.write-size",
+      "description": "Size in which the client should issue write requests to the Gluster NFSv3 server. Must be a multiple of 1KB (1024). Min and Max supported values are 4KB (4096) and 1MB(1048576) respectively. If the specified value is within the supported range but not a multiple of 4096, it is rounded up to the nearest multiple of 4096.",
+      "defaultValue": "(1 * 1048576ULL)"
+    },
+    {
+      "name": "nfs.readdir-size",
+      "description": "Size in which the client should issue directory reading requests to the Gluster NFSv3 server. Must be a multiple of 1KB (1024). Min and Max supported values are 4KB (4096) and 1MB (1048576) respectively.If the specified value is within the supported range but not a multiple of 4096, it is rounded up to the nearest multiple of 4096.",
+      "defaultValue": "(1 * 1048576ULL)"
+    },
+    {
+      "name": "nfs.exports-auth-enable",
+      "description": "Set the option to 'on' to enable exports/netgroup authentication in the NFS server and mount daemon.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "nfs.auth-refresh-interval-sec",
+      "description": "Frequency in seconds that the daemon should check for changes in the exports/netgroups file.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "nfs.auth-cache-ttl-sec",
+      "description": "Sets the TTL of an entry in the auth cache. Value is in seconds.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "features.read-only",
+      "description": "When \"on\", makes a volume read-only. It is turned \"off\" by default.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.worm",
+      "description": "When \"on\", makes a volume get write once read many  feature. It is turned \"off\" by default.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "storage.linux-aio",
+      "description": "Support for native Linux AIO",
+      "defaultValue": "off"
+    },
+    {
+      "name": "storage.batch-fsync-mode",
+      "description": "Possible values:\n\t- syncfs: Perform one syncfs() on behalf oa batchof fsyncs.\n\t- syncfs-single-fsync: Perform one syncfs() on behalf of a batch of fsyncs and one fsync() per batch.\n\t- syncfs-reverse-fsync: Preform one syncfs() on behalf of a batch of fsyncs and fsync() each file in the batch in reverse order.\n in reverse order.\n\t- reverse-fsync: Perform fsync() of each file in the batch in reverse order.",
+      "defaultValue": "reverse-fsync"
+    },
+    {
+      "name": "storage.batch-fsync-delay-usec",
+      "description": "Num of usecs to wait for aggregating fsync requests",
+      "defaultValue": "0"
+    },
+    {
+      "name": "storage.owner-uid",
+      "description": "Support for setting uid of brick's owner",
+      "defaultValue": "-1"
+    },
+    {
+      "name": "storage.owner-gid",
+      "description": "Support for setting gid of brick's owner",
+      "defaultValue": "-1"
+    },
+    {
+      "name": "storage.node-uuid-pathinfo",
+      "description": "return glusterd's node-uuid in pathinfo xattr string instead of hostname",
+      "defaultValue": "off"
+    },
+    {
+      "name": "storage.health-check-interval",
+      "description": "Interval in seconds for a filesystem health check, set to 0 to disable",
+      "defaultValue": "30"
+    },
+    {
+      "name": "storage.build-pgfid",
+      "description": "Enable placeholders for gfid to path conversion",
+      "defaultValue": "off"
+    },
+    {
+      "name": "storage.bd-aio",
+      "description": "Support for native Linux AIO",
+      "defaultValue": "off"
+    },
+    {
+      "name": "cluster.server-quorum-type",
+      "description": "This feature is on the server-side i.e. in glusterd. Whenever the glusterd on a machine observes that the quorum is not met, it brings down the bricks to prevent data split-brains. When the network connections are brought back up and the quorum is restored the bricks in the volume are brought back up.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "cluster.server-quorum-ratio",
+      "description": "Sets the quorum percentage for the trusted storage pool.",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "changelog.changelog-barrier-timeout",
+      "description": "After 'timeout' seconds since the time 'barrier' option was set to \"on\", unlink/rmdir/rename  operations are no longer blocked and previously blocked fops are allowed to go through",
+      "defaultValue": "120"
+    },
+    {
+      "name": "features.barrier-timeout",
+      "description": "After 'timeout' seconds since the time 'barrier' option was set to \"on\", acknowledgements to file operations are no longer blocked and previously blocked acknowledgements are sent to the application",
+      "defaultValue": "120"
+    },
+    {
+      "name": "features.trash",
+      "description": "Enable/disable trash translator",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.trash-dir",
+      "description": "Directory for trash files",
+      "defaultValue": ".trashcan"
+    },
+    {
+      "name": "features.trash-eliminate-path",
+      "description": "Eliminate paths to be excluded from trashing",
+      "defaultValue": "(null)"
+    },
+    {
+      "name": "features.trash-max-filesize",
+      "description": "Maximum size of file that can be moved to trash",
+      "defaultValue": "5MB"
+    },
+    {
+      "name": "features.trash-internal-op",
+      "description": "Enable/disable trash translator for internal operations",
+      "defaultValue": "off"
+    },
+    {
+      "name": "cluster.enable-shared-storage",
+      "description": "Create and mount the shared storage volume(gluster_shared_storage) at /var/run/gluster/shared_storage on enabling this option. Unmount and delete the shared storage volume  on disabling this option.",
+      "defaultValue": "disable"
+    },
+    {
+      "name": "cluster.write-freq-threshold",
+      "description": "Defines the number of writes, in a promotion/demotion cycle, that would mark a file HOT for promotion. Any file that has write hits less than this value will be considered as COLD and will be demoted.",
+      "defaultValue": "0"
+    },
+    {
+      "name": "cluster.read-freq-threshold",
+      "description": "Defines the number of reads, in a promotion/demotion cycle, that would mark a file HOT for promotion. Any file that has read hits less than this value will be considered as COLD and will be demoted.",
+      "defaultValue": "0"
+    },
+    {
+      "name": "cluster.tier-pause",
+      "description": "(null)",
+      "defaultValue": "off"
+    },
+    {
+      "name": "cluster.tier-promote-frequency",
+      "description": "Frequency to promote files to fast tier",
+      "defaultValue": "120"
+    },
+    {
+      "name": "cluster.tier-demote-frequency",
+      "description": "Frequency to demote files to slow tier",
+      "defaultValue": "3600"
+    },
+    {
+      "name": "cluster.watermark-hi",
+      "description": "Upper % watermark for promotion. If hot tier fills above this percentage, no promotion will happen and demotion will happen with high probability.",
+      "defaultValue": "90"
+    },
+    {
+      "name": "cluster.watermark-low",
+      "description": "Lower % watermark. If hot tier is less full than this, promotion will happen and demotion will not happen. If greater than this, promotion/demotion will happen at a probability relative to how full the hot tier is.",
+      "defaultValue": "75"
+    },
+    {
+      "name": "cluster.tier-mode",
+      "description": "Either 'test' or 'cache'. Test mode periodically demotes or promotes files automatically based on access. Cache mode does so based on whether the cache is full or not, as specified with watermarks.",
+      "defaultValue": "cache"
+    },
+    {
+      "name": "cluster.tier-max-mb",
+      "description": "The maximum number of MB that may be migrated in any direction in a given cycle by a single node.",
+      "defaultValue": "4000"
+    },
+    {
+      "name": "cluster.tier-max-files",
+      "description": "The maximum number of files that may be migrated in any direction in a given cycle by a single node.",
+      "defaultValue": "10000"
+    },
+    {
+      "name": "features.ctr-enabled",
+      "description": "Enable CTR xlator",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.record-counters",
+      "description": "Its a Change Time Recorder Xlator option to enable recording write and read heat counters. The default is disabled. If enabled, \"cluster.write-freq-threshold\" and \"cluster.read-freq-threshold\" defined the number of writes (or reads) to a given file are needed before triggering migration.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.ctr-sql-db-cachesize",
+      "description": "Defines the cache size of the sqlite database of changetimerecorder xlator.The input to this option is in pages.Each page is 4096 bytes. Default value is 1000 pages i.e ~ 4 MB. The max value is 262144 pages i.e 1 GB and the min value is 1000 pages i.e ~ 4 MB. ",
+      "defaultValue": "1000"
+    },
+    {
+      "name": "features.ctr-sql-db-wal-autocheckpoint",
+      "description": "Defines the autocheckpoint of the sqlite database of  changetimerecorder. The input to this option is in pages. Each page is 4096 bytes. Default value is 1000 pages i.e ~ 4 MB.The max value is 262144 pages i.e 1 GB and the min value is 1000 pages i.e ~4 MB.",
+      "defaultValue": "1000"
+    },
+    {
+      "name": "cluster.quorum-reads",
+      "description": "If quorum-reads is \"true\" only allow reads if quorum is met when quorum is enabled.",
+      "defaultValue": "no"
+    },
+    {
+      "name": "ganesha.enable",
+      "description": "export volume via NFS-Ganesha",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.shard",
+      "description": "enable/disable sharding translator on the volume.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.shard-block-size",
+      "description": "The size unit used to break a file into multiple chunks",
+      "defaultValue": "4MB"
+    },
+    {
+      "name": "features.cache-invalidation",
+      "description": "When \"on\", sends cache-invalidation notifications.",
+      "defaultValue": "off"
+    },
+    {
+      "name": "features.cache-invalidation-timeout",
+      "description": "After 'timeout' seconds since the time client accessed any file, cache-invalidation notifications are no longer sent to that client.",
+      "defaultValue": "60"
+    },
+    {
+      "name": "disperse.background-heals",
+      "description": "This option can be used to control number of parallel heals",
+      "defaultValue": "8"
+    },
+    {
+      "name": "disperse.heal-wait-qlength",
+      "description": "This option can be used to control number of heals that can wait",
+      "defaultValue": "128"
+    },
+    {
+      "name": "dht.force-readdirp",
+      "description": "This option if set to ON, forces the use of readdirp, and hence also displays the stats of the files.",
+      "defaultValue": "on"
+    },
+    {
+      "name": "disperse.read-policy",
+      "description": "inode-read fops happen only on 'k' number of bricks in n=k+m disperse subvolume. 'round-robin' selects the read subvolume using round-robin algo. 'gfid-hash' selects read subvolume based on hash of the gfid of that file/directory.",
+      "defaultValue": "round-robin"
+    }
+  ]
+}

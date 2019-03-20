@@ -1,0 +1,166 @@
+.overTextHide{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 230px;
+}
+.row{
+    margin-left: -15px !important;
+}
+hr{
+    margin: 11px 0 !important;
+}
+.vmware {
+    background: url(../image/vmware.png) no-repeat;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin-top: -2px;
+    margin-right: 3px;
+}
+#tree_1{
+    max-height: 500px;
+    overflow-y:auto;
+}
+.ip{
+    background: url(../image/datacenter.png) no-repeat;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin-right: 3px;
+    margin-top: -2px;
+}
+.flag{
+    background: url(../image/flag.png) no-repeat;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin-right:3px;
+    margin-top: -2px;
+}
+.vm{
+    background: url(../image/vm.png) no-repeat;
+    display: block;
+    float: left;
+    padding: 10px;
+    margin-right: 3px;
+    margin-top: -2px;
+}
+.tree-toggle{
+    color: #808080 !important;
+}
+.vmid{
+    color: #808080 !important;
+}
+.a_{
+    color: #0d638f !important;
+}
+.pad{
+    padding:5px 13px !important;
+    background-color: #45b6af !important;
+}
+.glyphicon-hand-up:before {
+    margin-right: 4px;
+}
+.bk2{
+    color:green;
+}
+.bk3{
+    color:#da1aaf;
+}
+.fa-angle-down:before {
+    margin-left: 3px;
+}
+.mmm>.dropdown-menu li > a {
+    padding: 14px 0 12px 13px !important;
+    font-size: 16px !important;
+}
+.tree a{
+
+}
+.p10{
+    padding-left: 11px;
+}
+/*
+a.tree-toggle{
+    height:19px !important;
+}*/
+.fa-remove:before, .fa-close:before, .fa-times:before {
+    margin-right: 15px;
+}
+.eee{
+    background-color:#eee;
+}
+.ccc{
+    width: 84px;
+    height: 30px;
+}
+/*css3*/
+.btn.btn.yellow.pad{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.btn.btn.yellow.pad:hover{
+    -webkit-transform:  scale(1.1,1.1)  translate(8px);
+    -moz-transform:  scale(1.1,1.1)  translate(8px);
+    -ms-transform:  scale(1.1,1.1)  translate(8px);
+    -o-transform:  scale(1.1,1.1)  translate(8px);
+    transform:  scale(1.1,1.1)  translate(8px);
+}
+.dropdown-menu>li{
+    -webkit-transition: transform 1s,background 1s;
+    -moz-transition: transform 1s,background 1s;
+    -ms-transition: transform 1s,background 1s;
+    -o-transition: transform 1s,background 1s;
+    transition: transform 1s,background 1s;
+}
+.dropdown-menu>li:hover{
+    -webkit-transform:  scale(1.1,1.1);
+    -moz-transform:  scale(1.1,1.1);
+    -ms-transform:  scale(1.1,1.1);
+    -o-transform:  scale(1.1,1.1);
+    transform:  scale(1.1,1.1);
+    background: #eee !important;
+}
+/*** +-样式 **/
+.row-details.row-details-close{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.row-details.row-details-close:hover{
+    -webkit-transform:  scale(1.1,1.1) translate(6px);
+    -moz-transform:  scale(1.1,1.1) translate(6px);
+    -ms-transform:  scale(1.1,1.1) translate(6px);
+    -o-transform:  scale(1.1,1.1) translate(6px);
+    transform:  scale(1.1,1.1) translate(6px);
+}
+.row-details.row-details-open{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.row-details.row-details-open:hover{
+    -webkit-transform:  scale(1.1,1.1) translate(6px);
+    -moz-transform:  scale(1.1,1.1) translate(6px);
+    -ms-transform:  scale(1.1,1.1) translate(6px);
+    -o-transform:  scale(1.1,1.1) translate(6px);
+    transform:  scale(1.1,1.1) translate(6px);
+}
+.search-target{
+    margin-bottom: 0px !important;
+    position: absolute;
+    height: 11px !important;
+    width: 36%;
+    left: 54%;
+}
+.www{
+    background:#d9edf7;/*#caedff*/
+}

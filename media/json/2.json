@@ -1,0 +1,37 @@
+{
+  "volumeType": "DISTRIBUTE",
+  "transportType": "ETHERNET",
+  "status": "OFFLINE",
+  "replicaCount": 0,
+  "stripeCount": 0,
+  "options": {
+    "options": [
+      {
+        "key": "transport.address-family",
+        "value": "inet"
+      },
+      {
+        "key": "performance.readdir-ahead",
+        "value": "on"
+      }
+    ]
+  },
+  "bricks": [
+    {
+      "BRICK_STATUS_STR": [
+        "Online",
+        "Offline"
+      ],
+      "serverName": "glusterfs02",
+      "brickDirectory": "/mnt/brick1",
+      "status": "OFFLINE",
+      "name": "glusterfs02:/mnt/brick1",
+      "children": []
+    }
+  ],
+  "nasProtocols": [
+    "GLUSTERFS"
+  ],
+  "name": "test4442",
+  "children": []
+}

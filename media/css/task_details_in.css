@@ -1,0 +1,60 @@
+/**
+ * Created by suge on 2017/8/22.
+ */
+#return{
+    float: right;
+    margin-top: 8px;
+    margin-right: 66px;
+    padding: 3px 11px;
+    font-size: 13px;
+}
+.width700{
+    width: 700px;
+    margin:0 auto;
+    margin-top: 34px;
+}
+.line{
+    margin-left: -22px;
+    margin-top: 11px;
+}
+.pad15{
+    width: 300px;
+    padding-top: 15px;
+}
+.font12{
+
+}
+.font-blue{
+    color: #4B8DF8 !important;
+}
+/*ul、li*/
+.task_li>.label1 {
+    padding: 7px 9px !important;
+    font-size: 15.844px !important;
+}
+body{
+    font-family: 微软雅黑, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.date{
+    float: right;
+    font-style: italic;
+    color: #c1cbd0;
+    padding: 0px 14px 1px 2px;
+}
+#historical_tasks{
+    overflow: auto;
+}
+#task_plans{
+    overflow: auto;
+}
+#task_plans>ul{
+    padding: 0px ;
+    margin: 0px 0px 10px 0px;
+}
+#task_plans>ul>li{
+    list-style-type: none;
+    line-height: 31px;
+    color:#82949a;
+    background-color: #fafafa;
+    margin-bottom: 5px;
+}

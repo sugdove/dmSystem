@@ -1,0 +1,264 @@
+[
+  {
+    "numOfCPUs": 4,
+    "cpuUsage": 0.0,
+    "totalMemory": 7761.62890625,
+    "memoryInUse": 493.9140625,
+    "disks": [
+      {
+        "description": " ",
+        "diskInterface": "",
+        "partitions": [],
+        "type": "DATA",
+        "fsType": "ext4",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 36488.0,
+        "spaceInUse": 0.0,
+        "status": "INITIALIZED",
+        "name": "dm-0",
+        "children": []
+      },
+      {
+        "description": "Virtual disk VMware",
+        "diskInterface": "",
+        "partitions": [
+          {
+            "type": "DATA",
+            "fsType": "LVM2_member",
+            "mountPoint": "",
+            "space": 40459.0,
+            "spaceInUse": 0.0,
+            "status": "INITIALIZED",
+            "name": "sda2",
+            "children": []
+          },
+          {
+            "type": "BOOT",
+            "fsType": "ext4",
+            "mountPoint": "/boot",
+            "space": 500.0,
+            "spaceInUse": 37.1591796875,
+            "status": "INITIALIZED",
+            "name": "sda1",
+            "children": []
+          }
+        ],
+        "type": "UNKNOWN",
+        "fsType": "",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 40959.0,
+        "spaceInUse": 37.1591796875,
+        "status": "UNINITIALIZED",
+        "name": "sda",
+        "children": []
+      },
+      {
+        "description": "Virtual disk VMware",
+        "diskInterface": "",
+        "partitions": [
+          {
+            "type": "DATA",
+            "fsType": "ext3",
+            "mountPoint": "",
+            "space": 51199.3125,
+            "spaceInUse": 0.0,
+            "status": "INITIALIZED",
+            "name": "sdb1",
+            "children": []
+          }
+        ],
+        "type": "UNKNOWN",
+        "fsType": "",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 51199.3125,
+        "spaceInUse": 0.0,
+        "status": "UNINITIALIZED",
+        "name": "sdb",
+        "children": []
+      },
+      {
+        "description": " ",
+        "diskInterface": "",
+        "partitions": [],
+        "type": "SWAP",
+        "fsType": "swap",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 3968.0,
+        "spaceInUse": 0.0,
+        "status": "INITIALIZED",
+        "name": "dm-1",
+        "children": []
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "hwAddr": "52:54:00:11:a0:86",
+        "model": "Ethernet",
+        "speed": "10",
+        "ipAddress": "",
+        "netMask": "",
+        "defaultGateway": "",
+        "name": "virbr0-nic",
+        "children": []
+      },
+      {
+        "hwAddr": "00:50:56:89:1e:66",
+        "model": "Ethernet",
+        "speed": "1000",
+        "ipAddress": "192.168.2.240",
+        "netMask": "255.255.255.0",
+        "defaultGateway": "192.168.2.1",
+        "name": "eth1",
+        "children": []
+      },
+      {
+        "hwAddr": "52:54:00:11:a0:86",
+        "model": "Ethernet",
+        "speed": "",
+        "ipAddress": "192.168.122.1",
+        "netMask": "255.255.255.0",
+        "defaultGateway": "",
+        "name": "virbr0",
+        "children": []
+      }
+    ],
+    "status": "ONLINE",
+    "name": "glusterfs01",
+    "children": []
+  },
+  {
+    "numOfCPUs": 4,
+    "cpuUsage": 0.0,
+    "totalMemory": 7761.62890625,
+    "memoryInUse": 502.74609375,
+    "disks": [
+      {
+        "description": " ",
+        "diskInterface": "",
+        "partitions": [],
+        "type": "DATA",
+        "fsType": "ext4",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 36488.0,
+        "spaceInUse": 0.0,
+        "status": "INITIALIZED",
+        "name": "dm-0",
+        "children": []
+      },
+      {
+        "description": "Virtual disk VMware",
+        "diskInterface": "",
+        "partitions": [
+          {
+            "type": "DATA",
+            "fsType": "LVM2_member",
+            "mountPoint": "",
+            "space": 40459.0,
+            "spaceInUse": 0.0,
+            "status": "INITIALIZED",
+            "name": "sda2",
+            "children": []
+          },
+          {
+            "type": "BOOT",
+            "fsType": "ext4",
+            "mountPoint": "/boot",
+            "space": 500.0,
+            "spaceInUse": 37.1591796875,
+            "status": "INITIALIZED",
+            "name": "sda1",
+            "children": []
+          }
+        ],
+        "type": "UNKNOWN",
+        "fsType": "",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 40959.0,
+        "spaceInUse": 37.1591796875,
+        "status": "UNINITIALIZED",
+        "name": "sda",
+        "children": []
+      },
+      {
+        "description": "Virtual disk VMware",
+        "diskInterface": "",
+        "partitions": [
+          {
+            "type": "DATA",
+            "fsType": "ext3",
+            "mountPoint": "",
+            "space": 51199.3125,
+            "spaceInUse": 0.0,
+            "status": "INITIALIZED",
+            "name": "sdb1",
+            "children": []
+          }
+        ],
+        "type": "UNKNOWN",
+        "fsType": "",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 51199.3125,
+        "spaceInUse": 0.0,
+        "status": "UNINITIALIZED",
+        "name": "sdb",
+        "children": []
+      },
+      {
+        "description": " ",
+        "diskInterface": "",
+        "partitions": [],
+        "type": "SWAP",
+        "fsType": "swap",
+        "fsVersion": "",
+        "mountPoint": "",
+        "space": 3968.0,
+        "spaceInUse": 0.0,
+        "status": "INITIALIZED",
+        "name": "dm-1",
+        "children": []
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "hwAddr": "52:54:00:11:a0:86",
+        "model": "Ethernet",
+        "speed": "10",
+        "ipAddress": "",
+        "netMask": "",
+        "defaultGateway": "",
+        "name": "virbr0-nic",
+        "children": []
+      },
+      {
+        "hwAddr": "00:50:56:89:55:bb",
+        "model": "Ethernet",
+        "speed": "1000",
+        "ipAddress": "192.168.2.241",
+        "netMask": "255.255.255.0",
+        "defaultGateway": "192.168.2.1",
+        "name": "eth1",
+        "children": []
+      },
+      {
+        "hwAddr": "52:54:00:11:a0:86",
+        "model": "Ethernet",
+        "speed": "",
+        "ipAddress": "192.168.122.1",
+        "netMask": "255.255.255.0",
+        "defaultGateway": "",
+        "name": "virbr0",
+        "children": []
+      }
+    ],
+    "status": "ONLINE",
+    "name": "glusterfs02",
+    "children": []
+  }
+]

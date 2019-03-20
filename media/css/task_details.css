@@ -1,0 +1,72 @@
+hr{
+    margin:0px 0 !important;
+}
+#ex1{
+    margin-bottom: 4px !important;
+}
+#ec_1{
+    height: 280px;
+}
+#return{
+    float: right;
+    margin-top: 8px;
+    margin-right: 66px;
+    padding: 3px 11px;
+    font-size: 13px;
+}
+.m1{
+    margin-right:1px;
+}
+#mytabcontent{
+    min-height: 283px;
+    font-size: 14px;
+}
+#border{
+    border: 1px solid #eee;
+}
+.ss{
+    width: 50.666667% !important
+}
+.static-info{
+    margin-bottom: 13px;
+    margin-left: -15px !important;
+}
+#mytabcontent2{
+   height: 313px;
+    overflow: auto;
+
+}
+.fz15{
+    font-size: 15px !important;
+}
+/*ul、li*/
+.task_li>.label1 {
+    padding: 7px 9px !important;
+    font-size: 15.844px !important;
+}
+body{
+    font-family: 微软雅黑, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.date{
+    float: right;
+    font-style: italic;
+    color: #c1cbd0;
+    padding: 0px 14px 1px 2px;
+}
+#historical_tasks{
+    overflow: auto;
+}
+#task_plans{
+    overflow: auto;
+}
+#task_plans>ul{
+    padding: 0px ;
+    margin: 0px 0px 10px 0px;
+}
+#task_plans>ul>li{
+    list-style-type: none;
+    line-height: 31px;
+    color:#82949a;
+    background-color: #fafafa;
+    margin-bottom: 5px;
+}

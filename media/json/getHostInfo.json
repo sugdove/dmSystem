@@ -1,0 +1,52 @@
+{
+  "res": "0",
+  "info": [
+    {
+      "CPU_model": "Intel(R) Xeon(R) CPU E5-2630 v3 @ 2.40GHz"
+    },
+    {
+      "physical_CPU": "0"
+    },
+    {
+      "logical_CPUs": "24"
+    },
+    {
+      "Memory_Toal": "15950 MB"
+    },
+    {
+      "Memory_Used": "2244 MB"
+    },
+    {
+      "Memory_Free": "13705 MB"
+    },
+    {
+      "Disks": "7"
+    },
+    {
+      "Amount_Disks": [
+        {
+          "/dev/sdc": " 1099.5 GB"
+        },
+        {
+          "/dev/sdb": " 214.7 GB"
+        },
+        {
+          "/dev/sdd": " 32.2 GB"
+        },
+        {
+          "/dev/sda": " 42.9 GB"
+        },
+        {
+          "/dev/sde": " 42.9 GB"
+        },
+        {
+          "/dev/mapper/vg_centsos6server-lv_root": " 38.3 GB"
+        },
+        {
+          "/dev/mapper/vg_centsos6server-lv_swap": " 4160 MB"
+        }
+      ]
+    }
+  ],
+  "err": "null"
+}

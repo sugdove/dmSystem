@@ -1,0 +1,24 @@
+{
+  "res": "0",
+  "info": {
+    "RunTime": 67.58,
+    "All": "331",
+    "Isbk": "3",
+    "version": "1.3_beat",
+    "PlanTotalNum": "5",
+    "StrategyRunNum": "2",
+    "disksize": "365072220160",
+    "disksizefree": [
+      {
+        "/mnt/data2/101": "865191MB"
+      },
+      {
+        "/mnt/data2/1": "865191MB"
+      },
+      {
+        "/mnt/data2/1": "865191MB"
+      }
+    ]
+  },
+  "err": "null"
+}

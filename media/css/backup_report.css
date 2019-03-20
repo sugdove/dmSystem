@@ -1,0 +1,89 @@
+.pad{
+    padding:5px 13px !important;
+    background-color: #45b6af !important;
+}
+.glyphicon-hand-up:before {
+    margin-right: 4px;
+}
+.fa-angle-down:before {
+    margin-left: 3px;
+}
+.mmm>.dropdown-menu li > a {
+    padding: 14px 0 12px 13px !important;
+    font-size: 15px !important;
+
+}
+.fa-plus:before {
+    margin-right: 9px;
+}
+.fa-mail-forward:before, .fa-share:before {
+    margin-right: 6px;
+}
+.mmm{
+    margin-bottom: 0px !important;
+}
+.ccc{
+    width: 84px;
+    height: 30px;
+}
+.green{
+    color:green
+}
+/*css3*/
+.btn.btn.yellow.pad{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.btn.btn.yellow.pad:hover{
+    -webkit-transform:  scale(1.1,1.1)  translate(8px);
+    -moz-transform:  scale(1.1,1.1)  translate(8px);
+    -ms-transform:  scale(1.1,1.1)  translate(8px);
+    -o-transform:  scale(1.1,1.1)  translate(8px);
+    transform:  scale(1.1,1.1)  translate(8px);
+}
+.dropdown-menu>li{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.dropdown-menu>li:hover{
+    -webkit-transform:  scale(1.1,1.1);
+    -moz-transform:  scale(1.1,1.1);
+    -ms-transform:  scale(1.1,1.1);
+    -o-transform:  scale(1.1,1.1);
+    transform:  scale(1.1,1.1);
+    background: #eee !important;
+}
+.row-details.row-details-close{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.row-details.row-details-close:hover{
+    -webkit-transform:  scale(1.1,1.1) translate(6px);
+    -moz-transform:  scale(1.1,1.1) translate(6px);
+    -ms-transform:  scale(1.1,1.1) translate(6px);
+    -o-transform:  scale(1.1,1.1) translate(6px);
+    transform:  scale(1.1,1.1) translate(6px);
+}
+.row-details.row-details-open{
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+.row-details.row-details-open:hover{
+    -webkit-transform:  scale(1.1,1.1) translate(6px);
+    -moz-transform:  scale(1.1,1.1) translate(6px);
+    -ms-transform:  scale(1.1,1.1) translate(6px);
+    -o-transform:  scale(1.1,1.1) translate(6px);
+    transform:  scale(1.1,1.1) translate(6px);
+}

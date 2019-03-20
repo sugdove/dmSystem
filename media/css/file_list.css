@@ -1,0 +1,50 @@
+body{
+    font-family: 微软雅黑, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.contain-file-div {
+    border: 1px solid #fff;
+    float: left;
+    height: 130px;
+    margin: 4px 0 0 7px;
+    position: relative;
+    text-align: center;
+    width: 118px;
+    cursor: pointer;
+}
+
+.contain-file-div:hover{
+    background-color: #f1f5fa;
+    -webkit-border-radius: 8px;
+}
+.portlet-body{
+    height:700px ;
+    overflow-y:auto;
+}
+.contain-folder-div{
+    position: relative;
+    margin: 9px auto 0;
+    width: 84px;
+    height: 84px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background: url(../image/folder.png) center no-repeat;
+}
+.contain-text-div{
+    position: relative;
+    margin: 9px auto 0;
+    width: 84px;
+    height: 84px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background: url(../image/text.png) center no-repeat;
+}
+.file-name-div{
+    height: 37px;
+    overflow:hidden ;
+}
+#breadcrumb-2{
+    margin-bottom: 0px !important;
+}
+form{
+    margin: 0 0 0px !important;
+}
